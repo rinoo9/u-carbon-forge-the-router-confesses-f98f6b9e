@@ -19,3 +19,20 @@ python3 main.py
 ```
 
 It asserts the entry is a single line of 1–200 characters before writing.
+
+## How the line works
+
+The entry is a confession in the router's own voice, not a technical excuse. The first sentence reframes the dropped connection as a deliberate exit ("I walked out at the climax") instead of a failure; the second sentence supplies six years of grievance — unplugged, rebooted, blamed for everything — so the walkout reads as earned, not random. Keeping it to one line and under 200 characters makes it read like a single spoken outburst, the way a router would finally snap after years of silent service.
+
+## Verification
+
+`main.py` is deterministic: no inputs, no randomness, no clock reads, no network access. Run it twice and compare the outputs — they must be byte-identical:
+
+```sh
+python3 main.py
+sha256sum /output/entry.txt
+python3 main.py
+sha256sum /output/entry.txt
+```
+
+The program itself prints the entry's character count and its sha256 digest on every run (for example, `entry: 165 chars, sha256 …`), so you can confirm the output matches the line in this README without re-reading the source. The expected character count is 165, well within the 200-character limit, and the file contains exactly that one line with no trailing newline.
